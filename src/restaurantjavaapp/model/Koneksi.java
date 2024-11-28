@@ -8,6 +8,6 @@ package restaurantjavaapp.model;
  *
  * @author User
  */
-public class Restaurant {
+public class Koneksi {
     
 }
