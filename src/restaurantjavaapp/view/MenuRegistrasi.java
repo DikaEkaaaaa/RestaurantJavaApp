@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package restaurantjavaapp.view;
+import javax.swing.JOptionPane;
+import restaurantjavaapp.controller.ControllerUser;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,6 +18,19 @@ public class MenuRegistrasi extends javax.swing.JFrame {
      */
     public MenuRegistrasi() {
         initComponents();
+        this.refreshTable();
+    }
+    
+    public void refreshTable(){
+        //membuat objek
+        ControllerUser cu = new ControllerUser();
+        DefaultTableModel dtm = cu.buatTabel();
+        
+        //menerapkan desain tabel dtm ke tblRegistrasi
+        this.tblRegistrasi.setModel(dtm);
+
+        //mengisi tblPasien dengan data
+        cu.tampilkanData();
     }
 
     /**
@@ -42,9 +58,9 @@ public class MenuRegistrasi extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
-        txtPassword = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
         txtNamaUser = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,6 +89,11 @@ public class MenuRegistrasi extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblRegistrasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRegistrasiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblRegistrasi);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -166,8 +187,8 @@ public class MenuRegistrasi extends javax.swing.JFrame {
                                 .addComponent(btnLogout))
                             .addComponent(txtIdUser)
                             .addComponent(txtUsername)
-                            .addComponent(txtPassword)
-                            .addComponent(txtNamaUser)))
+                            .addComponent(txtNamaUser)
+                            .addComponent(txtPassword)))
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(72, Short.MAX_VALUE))
@@ -211,18 +232,64 @@ public class MenuRegistrasi extends javax.swing.JFrame {
 
     private void btnMenuMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMasakanActionPerformed
         // TODO add your handling code here:
+        MenuMasakan masak = new MenuMasakan();
+        masak.setVisible(true);
+        this.setVisible(false);
+        masak.btnInput.setEnabled(true);
+        masak.btnDelete.setEnabled(true);
+        masak.btnUpdate.setEnabled(true);
+        masak.btnTransaksi.setEnabled(true);
+        masak.btnRegistrasi.setEnabled(true);
+        masak.btnLogout.setEnabled(true);
     }//GEN-LAST:event_btnMenuMasakanActionPerformed
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         // TODO add your handling code here:
+        ControllerUser cu = new ControllerUser();
+        String username = this.txtUsername.getText();
+        String password = this.txtPassword.getText();
+        String namaUser = this.txtNamaUser.getText();
+        int idLevel = Integer.parseInt(cmbIdLevel.getSelectedItem().toString());
+        boolean status = cu.tambahData(username, password, namaUser, idLevel);
+        
+        if(status == true){
+            this.refreshTable();
+            JOptionPane.showMessageDialog(this, "Berhasil Tambah Data");
+        }else{
+            JOptionPane.showMessageDialog(this, "Gagal Tambah Data");
+        }
     }//GEN-LAST:event_btnInputActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        ControllerUser cu = new ControllerUser();
+        int idUser = Integer.parseInt(this.txtIdUser.getText());
+        String username = this.txtUsername.getText();
+        String password = this.txtPassword.getText();
+        String namaUser = this.txtNamaUser.getText();
+        int idLevel = Integer.parseInt(this.cmbIdLevel.getSelectedItem().toString());
+        boolean status = cu.ubahData(idUser, username, password, namaUser, idLevel);
+        
+        if(status == true){
+            this.refreshTable();
+            JOptionPane.showMessageDialog(this, "Berhasil Update Data");
+        }else{
+            JOptionPane.showMessageDialog(this, "Gagal Update Data");
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        ControllerUser cu = new ControllerUser();
+        int idUser = Integer.parseInt(this.txtIdUser.getText());
+        boolean status = cu.hapusData(idUser);
+        
+        if(status == true){
+            this.refreshTable();
+            JOptionPane.showMessageDialog(this, "Berhasil Hapus Data");
+        }else{
+            JOptionPane.showMessageDialog(this, "Gagal Hapus Data");
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -231,6 +298,24 @@ public class MenuRegistrasi extends javax.swing.JFrame {
         fl.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void tblRegistrasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegistrasiMouseClicked
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        //Konversi tblresigtrasi ke DTM
+        DefaultTableModel dtm2= (DefaultTableModel) tblRegistrasi.getModel();
+        
+        //mengambil 1 baris data yang diklik
+        int pilih = tblRegistrasi.getSelectedRow();
+        
+        //masukkkan ke text field
+        //pilih --> Baris, angka --> kolom
+        this.txtIdUser.setText(dtm2.getValueAt(pilih, 0).toString());
+        this.txtUsername.setText(dtm2.getValueAt(pilih, 1).toString());
+        this.txtPassword.setText(dtm2.getValueAt(pilih, 2).toString());
+        this.txtNamaUser.setText(dtm2.getValueAt(pilih, 3).toString());
+        this.cmbIdLevel.setSelectedItem(dtm2.getValueAt(pilih, 4).toString());
+    }//GEN-LAST:event_tblRegistrasiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -286,7 +371,7 @@ public class MenuRegistrasi extends javax.swing.JFrame {
     private javax.swing.JTable tblRegistrasi;
     private javax.swing.JTextField txtIdUser;
     private javax.swing.JTextField txtNamaUser;
-    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtPassword;
     private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,8 +14,7 @@ public class RestaurantJavaApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        FormLogin fl = new FormLogin();
-        fl.setVisible(true);
+        
     }
     
 }
