@@ -38,7 +38,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
         btnInput = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnLogout = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -74,6 +74,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         btnCetakLaporan.setText("CETAK LAPORAN");
+        btnCetakLaporan.setEnabled(false);
         btnCetakLaporan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCetakLaporanActionPerformed(evt);
@@ -128,11 +129,11 @@ public class MenuTransaksi extends javax.swing.JFrame {
                 .addGap(15, 15, 15))
         );
 
-        jButton5.setForeground(new java.awt.Color(255, 0, 0));
-        jButton5.setText("LOGOUT");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnLogout.setForeground(new java.awt.Color(255, 0, 0));
+        btnLogout.setText("LOGOUT");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnLogoutActionPerformed(evt);
             }
         });
 
@@ -178,10 +179,9 @@ public class MenuTransaksi extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                                .addComponent(jButton5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtIdTransaksi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                                .addComponent(txtNamaPelanggan, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                .addComponent(btnLogout))
+                            .addComponent(txtIdTransaksi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
+                            .addComponent(txtNamaPelanggan, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
@@ -210,7 +210,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(btnLogout))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtIdTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,9 +264,12 @@ public class MenuTransaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+        FormLogin fl = new FormLogin();
+        fl.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     private void txtTotalBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalBayarActionPerformed
         // TODO add your handling code here:
@@ -318,10 +321,10 @@ public class MenuTransaksi extends javax.swing.JFrame {
     public javax.swing.JButton btnCetakLaporan;
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnInput;
+    public javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMenuMasakan;
     public javax.swing.JButton btnUpdate;
     private javax.swing.JComboBox<String> cmbIdMasakan;
-    public javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

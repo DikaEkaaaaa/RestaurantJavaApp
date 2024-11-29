@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package restaurantjavaapp;
-
+import restaurantjavaapp.view.MenuRegistrasi;
 /**
  *
  * @author user
@@ -14,7 +14,8 @@ public class RestaurantJavaApp {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        MenuRegistrasi reg = new MenuRegistrasi();
+        reg.setVisible(true);
     }
     
 }

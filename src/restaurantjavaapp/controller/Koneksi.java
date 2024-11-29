@@ -6,33 +6,30 @@ package restaurantjavaapp.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author User
  */
 public class Koneksi {
-
+    private String url = "jdbc:mysql://localhost/db_restoran";
+    private String user = "root";
+    private String pass = "";
     public Connection con;
-    public Statement stm;
 
     //method untuk konfigurasi koneksi ke db
     public void config() {
         try {
-            String url = "jdbc:mysql://127.0.0.1/db_restoran";
-            String user = "root";
-            String pass = "";
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
             //string connection
             con = DriverManager.getConnection(url, user, pass);
-
-            //mempersiapkan variabel untuk sql statement
-            stm = (Statement) con.createStatement();
             System.out.println("Koneksi Berhasil");
         } catch (Exception e) {
-            System.out.println("Koneksi Gagal" + e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
+    }
+    
+    public Connection getCon(){
+        return con;
     }
 }

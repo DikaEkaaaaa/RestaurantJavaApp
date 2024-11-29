@@ -227,6 +227,9 @@ public class MenuRegistrasi extends javax.swing.JFrame {
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
         // TODO add your handling code here:
+        FormLogin fl = new FormLogin();
+        fl.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**

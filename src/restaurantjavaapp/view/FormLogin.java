@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package restaurantjavaapp.view;
+import restaurantjavaapp.controller.ControllerUser;
+import restaurantjavaapp.model.User;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,6 +107,45 @@ public class FormLogin extends javax.swing.JFrame {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         // TODO add your handling code here:
+        ControllerUser cu = new ControllerUser();
+        String username = this.txtUsername.getText();
+        String password = this.txtPassword.getText();
+        boolean status = cu.cekLogin(username, password);
+        
+        if (status == true){
+            User us = new User();
+            int idlevel = us.getId_level();
+            if(idlevel == 0){
+                JOptionPane.showMessageDialog(null, "AKUN TIDAK DITEMUKAN");
+            }else{
+                switch(idlevel){
+                    case 1:
+                        MenuRegistrasi reg = new MenuRegistrasi();
+                        reg.setVisible(true);
+                        this.setVisible(false);
+                        break;
+                    case 2:
+                        MenuTransaksi tran = new MenuTransaksi();
+                        tran.setVisible(true);
+                        this.setVisible(false);
+                        break;
+                    case 3:
+                        MenuTransaksi tran2 = new MenuTransaksi();
+                        tran2.setVisible(true);
+                        this.setVisible(false);
+                        tran2.btnCetakLaporan.setEnabled(true);
+                        break;
+                    case 4:
+                        MenuMasakan masak = new MenuMasakan();
+                        masak.setVisible(true);
+                        this.setVisible(false);
+                        masak.btnLogout.setEnabled(true);
+                        break;
+                }
+            }
+        }else{
+//            JOptionPane.showMessageDialog(this, "Username/Password salah...");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     /**
