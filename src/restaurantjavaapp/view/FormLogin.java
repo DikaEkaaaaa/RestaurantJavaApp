@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
  * @author ASUS
  */
 public class FormLogin extends javax.swing.JFrame {
-
     /**
      * Creates new form FormLogin
      */
@@ -111,12 +110,13 @@ public class FormLogin extends javax.swing.JFrame {
         String username = this.txtUsername.getText();
         String password = this.txtPassword.getText();
         boolean status = cu.cekLogin(username, password);
+   
         
         if (status == true){
-            User us = new User();
-            int idlevel = us.getId_level();
+            User level = cu.getIdLevelSekarang();
+            int idlevel = level.getId_level();
             if(idlevel == 0){
-                JOptionPane.showMessageDialog(null, "AKUN TIDAK DITEMUKAN");
+                JOptionPane.showMessageDialog(this, "AKUN TIDAK DITEMUKAN");
             }else{
                 switch(idlevel){
                     case 1:
@@ -144,7 +144,7 @@ public class FormLogin extends javax.swing.JFrame {
                 }
             }
         }else{
-//            JOptionPane.showMessageDialog(this, "Username/Password salah...");
+            JOptionPane.showMessageDialog(this, "USERNAME / PASSWORD SALAH...");
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

@@ -1,19 +1,20 @@
 package restaurantjavaapp.controller;
 
-import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import restaurantjavaapp.model.User;
 
 public class ControllerUser {
-    private PreparedStatement stat;
-    private ResultSet rs;
-    private Koneksi db;
+    public Statement stm;
+    public ResultSet rs;
+    public String sql;
+    private User IdLevelSekarang;
     
     public ControllerUser() {
-        db = new Koneksi();
+        Koneksi db = new Koneksi();
         db.config();
+        this.stm = db.stm;
     }
     
     public boolean cekLogin(String username, String password) {
@@ -24,29 +25,26 @@ public class ControllerUser {
         boolean status = false;
         try {
             // Secure the query with parameterized PreparedStatement to prevent SQL injection
-            String query = "SELECT * FROM tbuser WHERE username = '"+us.getUsername()+"' AND password = '"+us.getPassword()+"';";
-            this.stat = db.getCon().prepareStatement(query);
-            this.stat.setString(1, us.getUsername());
-            this.stat.setString(2, us.getPassword());
+            this.sql = "SELECT * FROM tbuser WHERE username = '"+us.getUsername()+"' AND password = '"+us.getPassword()+"'";
             
-            this.rs = this.stat.executeQuery();
+            rs = stm.executeQuery(sql);
             
             if (rs.next()) {
+                status = true;
                 us.setId_level(rs.getInt("id_level"));
-                status = true; // Login success if result found
+                IdLevelSekarang = us;
+            }else{
+                status = false;
             }
-        } catch (SQLException e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
-        } finally {
-            // Ensure resources are closed properly
-            try {
-                if (rs != null) rs.close();
-                if (stat != null) stat.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        
+        } 
         return status;
     }
+
+    public User getIdLevelSekarang() {
+        return IdLevelSekarang;
+    }
+    
+    
 }
