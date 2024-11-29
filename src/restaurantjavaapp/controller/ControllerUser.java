@@ -1,20 +1,22 @@
 package restaurantjavaapp.controller;
 
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import restaurantjavaapp.model.User;
 
 public class ControllerUser {
-    public Statement stm;
-    public ResultSet rs;
+    private Connection con;
+    private PreparedStatement pst;
+    private ResultSet rs;
     public String sql;
     private User IdLevelSekarang;
     
     public ControllerUser() {
         Koneksi db = new Koneksi();
         db.config();
-        this.stm = db.stm;
+        this.con = db.con;  
     }
     
     public boolean cekLogin(String username, String password) {
@@ -27,7 +29,11 @@ public class ControllerUser {
             // Secure the query with parameterized PreparedStatement to prevent SQL injection
             this.sql = "SELECT * FROM tbuser WHERE username = '"+us.getUsername()+"' AND password = '"+us.getPassword()+"'";
             
-            rs = stm.executeQuery(sql);
+            // Menyiapkan PreparedStatement
+            pst = con.prepareStatement(sql);
+            
+            // Menjalankan query
+            rs = pst.executeQuery();
             
             if (rs.next()) {
                 status = true;

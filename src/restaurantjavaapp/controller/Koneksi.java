@@ -1,36 +1,29 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package restaurantjavaapp.controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 
 /**
- *
- * @author User
+ * Kelas untuk menangani koneksi ke database
  */
 public class Koneksi {
     public Connection con;
-    public Statement stm;
 
-    //method untuk konfigurasi koneksi ke db
-    public void config(){
+    // Method untuk konfigurasi koneksi ke database
+    public void config() {
         try {
             String url = "jdbc:mysql://127.0.0.1/db_restoran";
             String user = "root";
             String pass = "";
-            Class.forName ("com.mysql.cj.jdbc.Driver");
-            
-            //String connection
+
+            // Memuat driver MySQL
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Membuat koneksi ke database
             con = DriverManager.getConnection(url, user, pass);
-            //mempersiapkan variabel untuk sql statement
-            stm = (Statement) con.createStatement();
-            System.out.println("Koneksi Berhasil...");
+            System.out.println("Koneksi ke database berhasil.");
         } catch (Exception e) {
-            System.out.println("Koneksi Gagal..." + e);
+            System.out.println("Koneksi ke database gagal: " + e.getMessage());
         }
     }
 }
