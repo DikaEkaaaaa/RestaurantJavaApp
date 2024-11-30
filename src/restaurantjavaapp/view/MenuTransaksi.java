@@ -57,6 +57,11 @@ public class MenuTransaksi extends javax.swing.JFrame {
         jLabel5.setText("ID MASAKAN");
 
         cmbIdMasakan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        cmbIdMasakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbIdMasakanActionPerformed(evt);
+            }
+        });
 
         tblTransaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -278,6 +283,10 @@ public class MenuTransaksi extends javax.swing.JFrame {
     private void btnMenuMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMasakanActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuMasakanActionPerformed
+
+    private void cmbIdMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdMasakanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbIdMasakanActionPerformed
 
     /**
      * @param args the command line arguments

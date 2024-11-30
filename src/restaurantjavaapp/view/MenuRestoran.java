@@ -4,6 +4,11 @@
  */
 package restaurantjavaapp.view;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import restaurantjavaapp.controller.ControllerMenuResto;
+
+
 /**
  *
  * @author ASUS
@@ -15,6 +20,16 @@ public class MenuRestoran extends javax.swing.JFrame {
      */
     public MenuRestoran() {
         initComponents();
+        this.refreshTable();
+    }
+    
+    public void refreshTable(){
+        ControllerMenuResto cm = new ControllerMenuResto();
+        DefaultTableModel dtm = cm.buatTabel();
+        
+        this.tblResto.setModel(dtm);
+        
+        cm.tampilkanData();
     }
 
     /**
@@ -36,7 +51,7 @@ public class MenuRestoran extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         cmbStatusMenu = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblMasakan = new javax.swing.JTable();
+        tblResto = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         btnRegistrasi = new javax.swing.JButton();
         btnInput = new javax.swing.JButton();
@@ -69,7 +84,7 @@ public class MenuRestoran extends javax.swing.JFrame {
 
         cmbStatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", "HABIS" }));
 
-        tblMasakan.setModel(new javax.swing.table.DefaultTableModel(
+        tblResto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -80,7 +95,12 @@ public class MenuRestoran extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblMasakan);
+        tblResto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblRestoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblResto);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -239,18 +259,61 @@ public class MenuRestoran extends javax.swing.JFrame {
 
     private void btnRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrasiActionPerformed
         // TODO add your handling code here:
+        MenuRegistrasi registrasi = new MenuRegistrasi();
+        registrasi.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnRegistrasiActionPerformed
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         // TODO add your handling code here:
+        ControllerMenuResto cmr = new ControllerMenuResto();
+        String a = txtNamaMenu.getText();
+        int b = Integer.parseInt(txtHargaMenu.getText());
+        String c = (String) cmbStatusMenu.getSelectedItem();
+        String d = (String) cmbKategori.getSelectedItem();
+        
+        boolean status = cmr.tambahData(a, b, c, d);
+        
+        if (status == true){
+            this.refreshTable();
+            JOptionPane.showMessageDialog(this, "Berhasil Menambah Data Menu");
+        } else {
+            JOptionPane.showMessageDialog(this, "Gagal Menambah Data Menu");
+        }
     }//GEN-LAST:event_btnInputActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        ControllerMenuResto cmr = new ControllerMenuResto();
+        int a = Integer.parseInt(txtIdMenu.getText());
+        String b = txtNamaMenu.getText();
+        int c = Integer.parseInt(txtHargaMenu.getText());
+        String d = (String) cmbStatusMenu.getSelectedItem();
+        String e = (String) cmbKategori.getSelectedItem();
+        
+        boolean status = cmr.ubahData(a, b, c, d, e);
+        
+        if (status == true){
+            this.refreshTable();
+            JOptionPane.showMessageDialog(this, "Berhasil Mengubah Data Menu");
+        } else {
+            JOptionPane.showMessageDialog(this, "Gagal Mengubah Data Menu");
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        ControllerMenuResto cmr = new ControllerMenuResto();
+        int a = Integer.parseInt(txtIdMenu.getText());
+        
+        boolean status = cmr.hapusData(a);
+        
+        if (status == true){
+            this.refreshTable();
+            JOptionPane.showMessageDialog(this, "Berhasil Menghapus Data Menu");
+        } else {
+            JOptionPane.showMessageDialog(this, "Gagal Menghapus Data Menu");
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -259,6 +322,17 @@ public class MenuRestoran extends javax.swing.JFrame {
         fl.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
+
+    private void tblRestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRestoMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm2 = (DefaultTableModel) tblResto.getModel();
+        
+        int select = tblResto.getSelectedRow();
+        
+        this.txtIdMenu.setText(dtm2.getValueAt(select, 0).toString());
+        this.txtNamaMenu.setText(dtm2.getValueAt(select, 1).toString());
+        this.txtHargaMenu.setText(dtm2.getValueAt(select, 2).toString());
+    }//GEN-LAST:event_tblRestoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -315,7 +389,7 @@ public class MenuRestoran extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblMasakan;
+    private javax.swing.JTable tblResto;
     private javax.swing.JTextField txtHargaMenu;
     private javax.swing.JTextField txtIdMenu;
     private javax.swing.JTextField txtNamaMenu;

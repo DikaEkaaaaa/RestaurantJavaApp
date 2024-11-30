@@ -11,14 +11,14 @@ public class MenuResto extends Menu {
     String status;
     String kategori;
     
-    public MenuResto(int idmenuresto, int idmenu, String nama, int harga, String status, String kategori){
-        super(idmenu);
-        this.id_menuresto = idmenuresto;
-        this.nama = nama;
-        this.harga = harga;
-        this.status = status;
-        this.kategori = kategori;
-    }
+//    public MenuResto(int idmenuresto, int idmenu, String nama, int harga, String status, String kategori){
+//        super(idmenu);
+//        this.id_menuresto = idmenuresto;
+//        this.nama = nama;
+//        this.harga = harga;
+//        this.status = status;
+//        this.kategori = kategori;
+//    }
 
     public int getId_menuresto() {
         return id_menuresto;
