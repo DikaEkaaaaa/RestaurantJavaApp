@@ -83,6 +83,11 @@ public class MenuRestoran extends javax.swing.JFrame {
         jLabel5.setText("STATUS MENU");
 
         cmbStatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", "HABIS" }));
+        cmbStatusMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbStatusMenuActionPerformed(evt);
+            }
+        });
 
         tblResto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -174,10 +179,25 @@ public class MenuRestoran extends javax.swing.JFrame {
 
         btnTransaksi.setText("MENU TRANSAKSI");
         btnTransaksi.setEnabled(false);
+        btnTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTransaksiMouseClicked(evt);
+            }
+        });
+        btnTransaksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransaksiActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("KATEGORI");
 
         cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MAKANAN", "MINUMAN" }));
+        cmbKategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKategoriActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -333,6 +353,26 @@ public class MenuRestoran extends javax.swing.JFrame {
         this.txtNamaMenu.setText(dtm2.getValueAt(select, 1).toString());
         this.txtHargaMenu.setText(dtm2.getValueAt(select, 2).toString());
     }//GEN-LAST:event_tblRestoMouseClicked
+
+    private void btnTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransaksiMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnTransaksiMouseClicked
+
+    private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
+        // TODO add your handling code here:
+        MenuTransaksi mt = new MenuTransaksi();
+        this.setVisible(false);
+        mt.setVisible(true);
+    }//GEN-LAST:event_btnTransaksiActionPerformed
+
+    private void cmbStatusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbStatusMenuActionPerformed
+
+    private void cmbKategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbKategoriActionPerformed
 
     /**
      * @param args the command line arguments

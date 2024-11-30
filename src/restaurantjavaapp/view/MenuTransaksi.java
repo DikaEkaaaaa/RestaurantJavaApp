@@ -4,6 +4,9 @@
  */
 package restaurantjavaapp.view;
 
+import javax.swing.table.DefaultTableModel;
+import restaurantjavaapp.controller.ControllerMenuTransaksi;
+
 /**
  *
  * @author ASUS
@@ -15,7 +18,18 @@ public class MenuTransaksi extends javax.swing.JFrame {
      */
     public MenuTransaksi() {
         initComponents();
+        this.refreshTable();
     }
+
+     public void refreshTable(){
+        ControllerMenuTransaksi cmt = new ControllerMenuTransaksi();
+        DefaultTableModel dtm = cmt.buatTable();
+        
+        this.tblTransaksi.setModel(dtm);
+        
+        cmt.tampilkanData();
+    }
+     
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +61,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         btnMenuMasakan = new javax.swing.JButton();
+        txtTanggal = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,7 +71,6 @@ public class MenuTransaksi extends javax.swing.JFrame {
 
         jLabel5.setText("ID MASAKAN");
 
-        cmbIdMasakan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
         cmbIdMasakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbIdMasakanActionPerformed(evt);
@@ -74,6 +88,11 @@ public class MenuTransaksi extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblTransaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTransaksiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblTransaksi);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -200,13 +219,14 @@ public class MenuTransaksi extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel5))))
                         .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(cmbIdMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnMenuMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtJmlBeli, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtTotalBayar)
+                            .addComponent(txtJmlBeli)
+                            .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -236,14 +256,16 @@ public class MenuTransaksi extends javax.swing.JFrame {
                         .addGap(34, 34, 34))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(jLabel6)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtJmlBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
                         .addGap(18, 18, 18)
                         .addComponent(txtTotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,7 +308,14 @@ public class MenuTransaksi extends javax.swing.JFrame {
 
     private void cmbIdMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdMasakanActionPerformed
         // TODO add your handling code here:
+        ControllerMenuTransaksi cmt = new ControllerMenuTransaksi();
+        cmt.refreshCombo();
     }//GEN-LAST:event_cmbIdMasakanActionPerformed
+
+    private void tblTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTransaksiMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm2 = (DefaultTableModel) tblTransaksi.getModel();
+    }//GEN-LAST:event_tblTransaksiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -347,6 +376,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
     private javax.swing.JTextField txtIdTransaksi;
     private javax.swing.JTextField txtJmlBeli;
     private javax.swing.JTextField txtNamaPelanggan;
+    private com.toedter.calendar.JDateChooser txtTanggal;
     private javax.swing.JTextField txtTotalBayar;
     // End of variables declaration//GEN-END:variables
 }
