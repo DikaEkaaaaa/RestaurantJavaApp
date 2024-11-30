@@ -8,12 +8,12 @@ package restaurantjavaapp.view;
  *
  * @author ASUS
  */
-public class MenuMasakan extends javax.swing.JFrame {
+public class MenuMinuman extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuMasakan
      */
-    public MenuMasakan() {
+    public MenuMinuman() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class MenuMasakan extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtIdMenu = new javax.swing.JTextField();
-        txtNamaMasakan = new javax.swing.JTextField();
+        txtNamaMinuman = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtHargaMasakan = new javax.swing.JTextField();
+        txtHargaMinuman = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmbStatusMasakan = new javax.swing.JComboBox<>();
+        cmbStatusMinuman = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMasakan = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -44,29 +44,29 @@ public class MenuMasakan extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnTransaksi = new javax.swing.JButton();
-        btnMenuMinuman = new javax.swing.JButton();
+        btnMenuMasakan = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("MENU MASAKAN");
+        jLabel1.setText("MENU MINUMAN");
 
         jLabel2.setText("ID MENU");
 
-        jLabel3.setText("NAMA MASAKAN");
+        jLabel3.setText("NAMA MINUMAN");
 
         txtIdMenu.setEnabled(false);
 
-        jLabel4.setText("HARGA");
+        jLabel4.setText("HARGA ");
 
-        txtHargaMasakan.addActionListener(new java.awt.event.ActionListener() {
+        txtHargaMinuman.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHargaMasakanActionPerformed(evt);
+                txtHargaMinumanActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("STATUS MAKANAN");
+        jLabel5.setText("STATUS MINUMAN");
 
-        cmbStatusMasakan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", "HABIS" }));
+        cmbStatusMinuman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", "HABIS" }));
 
         tblMasakan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,11 +154,11 @@ public class MenuMasakan extends javax.swing.JFrame {
         btnTransaksi.setText("MENU TRANSAKSI");
         btnTransaksi.setEnabled(false);
 
-        btnMenuMinuman.setText("MENU MINUMAN");
-        btnMenuMinuman.setEnabled(false);
-        btnMenuMinuman.addActionListener(new java.awt.event.ActionListener() {
+        btnMenuMasakan.setText("MENU MASAKAN");
+        btnMenuMasakan.setEnabled(false);
+        btnMenuMasakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuMinumanActionPerformed(evt);
+                btnMenuMasakanActionPerformed(evt);
             }
         });
 
@@ -187,14 +187,14 @@ public class MenuMasakan extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnLogout))
                                         .addComponent(txtIdMenu)
-                                        .addComponent(txtNamaMasakan)
-                                        .addComponent(txtHargaMasakan)
-                                        .addComponent(cmbStatusMasakan, 0, 321, Short.MAX_VALUE))))))
+                                        .addComponent(txtNamaMinuman)
+                                        .addComponent(txtHargaMinuman)
+                                        .addComponent(cmbStatusMinuman, 0, 321, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(161, 161, 161)
                         .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(42, 42, 42)
-                        .addComponent(btnMenuMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnMenuMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,21 +211,21 @@ public class MenuMasakan extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNamaMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNamaMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtHargaMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHargaMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cmbStatusMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbStatusMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTransaksi)
-                    .addComponent(btnMenuMinuman))
+                    .addComponent(btnMenuMasakan))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -234,9 +234,9 @@ public class MenuMasakan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHargaMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaMasakanActionPerformed
+    private void txtHargaMinumanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaMinumanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtHargaMasakanActionPerformed
+    }//GEN-LAST:event_txtHargaMinumanActionPerformed
 
     private void btnRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrasiActionPerformed
         // TODO add your handling code here:
@@ -261,9 +261,9 @@ public class MenuMasakan extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void btnMenuMinumanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMinumanActionPerformed
+    private void btnMenuMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMasakanActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnMenuMinumanActionPerformed
+    }//GEN-LAST:event_btnMenuMasakanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -282,20 +282,21 @@ public class MenuMasakan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuMasakan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuMasakan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuMasakan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuMasakan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuMasakan().setVisible(true);
+                new MenuMinuman().setVisible(true);
             }
         });
     }
@@ -304,11 +305,11 @@ public class MenuMasakan extends javax.swing.JFrame {
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnInput;
     public javax.swing.JButton btnLogout;
-    public javax.swing.JButton btnMenuMinuman;
+    public javax.swing.JButton btnMenuMasakan;
     public javax.swing.JButton btnRegistrasi;
     public javax.swing.JButton btnTransaksi;
     public javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbStatusMasakan;
+    private javax.swing.JComboBox<String> cmbStatusMinuman;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -317,8 +318,8 @@ public class MenuMasakan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMasakan;
-    private javax.swing.JTextField txtHargaMasakan;
+    private javax.swing.JTextField txtHargaMinuman;
     private javax.swing.JTextField txtIdMenu;
-    private javax.swing.JTextField txtNamaMasakan;
+    private javax.swing.JTextField txtNamaMinuman;
     // End of variables declaration//GEN-END:variables
 }
