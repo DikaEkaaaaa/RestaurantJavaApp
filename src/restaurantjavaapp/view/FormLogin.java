@@ -136,7 +136,7 @@ public class FormLogin extends javax.swing.JFrame {
                         tran2.btnCetakLaporan.setEnabled(true);
                         break;
                     case 4:
-                        MenuMasakan masak = new MenuMasakan();
+                        MenuRestoran masak = new MenuRestoran();
                         masak.setVisible(true);
                         this.setVisible(false);
                         masak.btnLogout.setEnabled(true);

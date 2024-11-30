@@ -30,13 +30,14 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="523" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jPanel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel2" alignment="0" min="-2" pref="98" max="-2" attributes="0"/>
                                       <Component id="jLabel3" alignment="0" min="-2" pref="127" max="-2" attributes="0"/>
                                       <Component id="jLabel4" min="-2" pref="91" max="-2" attributes="0"/>
                                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -46,19 +47,18 @@
                                           <Component id="btnLogout" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="txtIdMenu" max="32767" attributes="0"/>
-                                      <Component id="txtNamaMasakan" max="32767" attributes="0"/>
-                                      <Component id="txtHargaMasakan" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="cmbStatusMasakan" alignment="0" pref="321" max="32767" attributes="0"/>
+                                      <Component id="txtNamaMenu" max="32767" attributes="0"/>
+                                      <Component id="txtHargaMenu" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cmbStatusMenu" alignment="0" pref="321" max="32767" attributes="0"/>
+                                      <Component id="cmbKategori" alignment="0" pref="321" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="264" max="-2" attributes="0"/>
                       <Component id="btnTransaksi" min="-2" pref="144" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      <Component id="btnMenuMinuman" min="-2" pref="144" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="72" max="32767" attributes="0"/>
@@ -81,25 +81,27 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="txtNamaMasakan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNamaMenu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtHargaMasakan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHargaMenu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cmbStatusMasakan" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbStatusMenu" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnTransaksi" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnMenuMinuman" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbKategori" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnTransaksi" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="338" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -110,7 +112,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MENU MASAKAN"/>
+        <Property name="text" type="java.lang.String" value="MENU RESTO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
@@ -120,7 +122,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="NAMA MASAKAN"/>
+        <Property name="text" type="java.lang.String" value="NAMA MENU"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIdMenu">
@@ -128,24 +130,24 @@
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNamaMasakan">
+    <Component class="javax.swing.JTextField" name="txtNamaMenu">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="text" type="java.lang.String" value="HARGA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtHargaMasakan">
+    <Component class="javax.swing.JTextField" name="txtHargaMenu">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHargaMasakanActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtHargaMenuActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="STATUS MAKANAN"/>
+        <Property name="text" type="java.lang.String" value="STATUS MENU"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JComboBox" name="cmbStatusMasakan">
+    <Component class="javax.swing.JComboBox" name="cmbStatusMenu">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
@@ -294,16 +296,22 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btnMenuMinuman">
+    <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
-        <Property name="text" type="java.lang.String" value="MENU MINUMAN"/>
-        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="KATEGORI"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMenuMinumanActionPerformed"/>
-      </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbKategori">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="2">
+            <StringItem index="0" value="MAKANAN"/>
+            <StringItem index="1" value="MINUMAN"/>
+          </StringArray>
+        </Property>
+      </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
   </SubComponents>

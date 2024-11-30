@@ -8,12 +8,12 @@ package restaurantjavaapp.view;
  *
  * @author ASUS
  */
-public class MenuMinuman extends javax.swing.JFrame {
+public class MenuRestoran extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuMasakan
      */
-    public MenuMinuman() {
+    public MenuRestoran() {
         initComponents();
     }
 
@@ -30,11 +30,11 @@ public class MenuMinuman extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtIdMenu = new javax.swing.JTextField();
-        txtNamaMinuman = new javax.swing.JTextField();
+        txtNamaMenu = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtHargaMinuman = new javax.swing.JTextField();
+        txtHargaMenu = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmbStatusMinuman = new javax.swing.JComboBox<>();
+        cmbStatusMenu = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMasakan = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -44,29 +44,30 @@ public class MenuMinuman extends javax.swing.JFrame {
         btnDelete = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         btnTransaksi = new javax.swing.JButton();
-        btnMenuMasakan = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        cmbKategori = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("MENU MINUMAN");
+        jLabel1.setText("MENU RESTO");
 
         jLabel2.setText("ID MENU");
 
-        jLabel3.setText("NAMA MINUMAN");
+        jLabel3.setText("NAMA MENU");
 
         txtIdMenu.setEnabled(false);
 
-        jLabel4.setText("HARGA ");
+        jLabel4.setText("HARGA");
 
-        txtHargaMinuman.addActionListener(new java.awt.event.ActionListener() {
+        txtHargaMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtHargaMinumanActionPerformed(evt);
+                txtHargaMenuActionPerformed(evt);
             }
         });
 
-        jLabel5.setText("STATUS MINUMAN");
+        jLabel5.setText("STATUS MENU");
 
-        cmbStatusMinuman.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", "HABIS" }));
+        cmbStatusMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TERSEDIA", "HABIS" }));
 
         tblMasakan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -154,13 +155,9 @@ public class MenuMinuman extends javax.swing.JFrame {
         btnTransaksi.setText("MENU TRANSAKSI");
         btnTransaksi.setEnabled(false);
 
-        btnMenuMasakan.setText("MENU MASAKAN");
-        btnMenuMasakan.setEnabled(false);
-        btnMenuMasakan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMenuMasakanActionPerformed(evt);
-            }
-        });
+        jLabel6.setText("KATEGORI");
+
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MAKANAN", "MINUMAN" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,13 +170,14 @@ public class MenuMinuman extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel5))
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6))
                                     .addGap(75, 75, 75)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addGroup(layout.createSequentialGroup()
@@ -187,14 +185,13 @@ public class MenuMinuman extends javax.swing.JFrame {
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnLogout))
                                         .addComponent(txtIdMenu)
-                                        .addComponent(txtNamaMinuman)
-                                        .addComponent(txtHargaMinuman)
-                                        .addComponent(cmbStatusMinuman, 0, 321, Short.MAX_VALUE))))))
+                                        .addComponent(txtNamaMenu)
+                                        .addComponent(txtHargaMenu)
+                                        .addComponent(cmbStatusMenu, 0, 321, Short.MAX_VALUE)
+                                        .addComponent(cmbKategori, 0, 321, Short.MAX_VALUE))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(42, 42, 42)
-                        .addComponent(btnMenuMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(264, 264, 264)
+                        .addComponent(btnTransaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,21 +208,23 @@ public class MenuMinuman extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNamaMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNamaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtHargaMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtHargaMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cmbStatusMinuman, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                    .addComponent(cmbStatusMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTransaksi)
-                    .addComponent(btnMenuMasakan))
+                    .addComponent(jLabel6)
+                    .addComponent(cmbKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnTransaksi)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
@@ -234,9 +233,9 @@ public class MenuMinuman extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHargaMinumanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaMinumanActionPerformed
+    private void txtHargaMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHargaMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtHargaMinumanActionPerformed
+    }//GEN-LAST:event_txtHargaMenuActionPerformed
 
     private void btnRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrasiActionPerformed
         // TODO add your handling code here:
@@ -261,10 +260,6 @@ public class MenuMinuman extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnLogoutActionPerformed
 
-    private void btnMenuMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMasakanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnMenuMasakanActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -282,21 +277,23 @@ public class MenuMinuman extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuRestoran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuRestoran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuRestoran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuMinuman.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuRestoran.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuMinuman().setVisible(true);
+                new MenuRestoran().setVisible(true);
             }
         });
     }
@@ -305,21 +302,22 @@ public class MenuMinuman extends javax.swing.JFrame {
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnInput;
     public javax.swing.JButton btnLogout;
-    public javax.swing.JButton btnMenuMasakan;
     public javax.swing.JButton btnRegistrasi;
     public javax.swing.JButton btnTransaksi;
     public javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbStatusMinuman;
+    private javax.swing.JComboBox<String> cmbKategori;
+    private javax.swing.JComboBox<String> cmbStatusMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMasakan;
-    private javax.swing.JTextField txtHargaMinuman;
+    private javax.swing.JTextField txtHargaMenu;
     private javax.swing.JTextField txtIdMenu;
-    private javax.swing.JTextField txtNamaMinuman;
+    private javax.swing.JTextField txtNamaMenu;
     // End of variables declaration//GEN-END:variables
 }

@@ -232,7 +232,7 @@ public class MenuRegistrasi extends javax.swing.JFrame {
 
     private void btnMenuMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuMasakanActionPerformed
         // TODO add your handling code here:
-        MenuMasakan masak = new MenuMasakan();
+        MenuRestoran masak = new MenuRestoran();
         masak.setVisible(true);
         this.setVisible(false);
         masak.btnInput.setEnabled(true);

@@ -11,4 +11,14 @@ public class Menu {
     public Menu(int idmenu){
         this.id = idmenu;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 }
