@@ -5,6 +5,7 @@
 package restaurantjavaapp.view;
 
 import com.toedter.calendar.JDateChooser;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import restaurantjavaapp.controller.ControllerTransaksi;
@@ -16,6 +17,11 @@ import java.sql.Connection;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+import restaurantjavaapp.controller.Koneksi;
 
 /**
  *
@@ -372,6 +378,8 @@ public class MenuTransaksi extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        controller = new ControllerTransaksi();
+        controller.prosesDeleteTransaksi(this);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -435,6 +443,10 @@ public class MenuTransaksi extends javax.swing.JFrame {
 
     private void btnCetakLaporan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakLaporan1ActionPerformed
         // TODO add your handling code here:
+        ControllerTransaksi ct = new ControllerTransaksi();
+        ct.cetakLaporan();
+        
+  
     }//GEN-LAST:event_btnCetakLaporan1ActionPerformed
 
     /**

@@ -127,6 +127,7 @@ public class FormLogin extends javax.swing.JFrame {
                         MenuTransaksi tran3 = new MenuTransaksi(iduser,namauser);
                         tran3.setVisible(true);
                         this.setVisible(false);
+                        tran3.btnCetakLaporan1.setEnabled(true);
                         tran3.btnMenuRegistrasi.setEnabled(true);
                         break;
                     case 2:
