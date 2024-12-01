@@ -3,16 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package restaurantjavaapp;
-import restaurantjavaapp.view.FormLogin;
-/**
- *
- * @author user
- */
+
 public class RestaurantJavaApp {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         
     }

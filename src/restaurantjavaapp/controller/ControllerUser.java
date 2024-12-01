@@ -13,6 +13,8 @@ public class ControllerUser {
     private ResultSet rs;
     public String sql;
     private User IdLevelSekarang;
+    private User IdUserSekarang;
+    private User NamaUserSekarang;
     
     DefaultTableModel dtm = new DefaultTableModel();
     
@@ -42,6 +44,10 @@ public class ControllerUser {
                 status = true;
                 us.setId_level(rs.getInt("id_level"));
                 IdLevelSekarang = us;
+                us.setId_user(rs.getInt("id_user"));
+                IdUserSekarang = us;
+                us.setNama_user(rs.getString("nama_user"));
+                NamaUserSekarang = us;
             }else{
                 status = false;
             }
@@ -54,6 +60,15 @@ public class ControllerUser {
     public User getIdLevelSekarang() {
         return IdLevelSekarang;
     }
+    
+    public User getIdUserSekarang() {
+        return IdUserSekarang;
+    }
+    
+    public User getNamaUserSekarang() {
+        return NamaUserSekarang;
+    }
+
     
     public DefaultTableModel buatTabel(){
         dtm.addColumn("ID USER");

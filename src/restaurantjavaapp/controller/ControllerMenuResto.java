@@ -65,63 +65,40 @@ public class ControllerMenuResto {
             System.out.println("Gagal Query..." + e);
         }
     }
-    
-public boolean tambahData(String a, int b, String c, String d) {
-    MenuResto mnr = new MenuResto();
-    mnr.setNama(a);
-    mnr.setHarga(b);
-    mnr.setStatus(c);
-    mnr.setKategori(d);
 
-    try {
-        String sqlMenu = "INSERT INTO tbmenu (id_menu) VALUES (DEFAULT)";
-        pst = con.prepareStatement(sqlMenu, PreparedStatement.RETURN_GENERATED_KEYS);
-        pst.executeUpdate();
+    public boolean tambahData(String a, int b, String c, String d) {
+        MenuResto mnr = new MenuResto();
+        mnr.setNama(a);
+        mnr.setHarga(b);
+        mnr.setStatus(c);
+        mnr.setKategori(d);
 
-        ResultSet generatedKeys = pst.getGeneratedKeys();
-        int idMenu = 0;
-        if (generatedKeys.next()) {
-            idMenu = generatedKeys.getInt(1);
-        } else {
-            throw new Exception("Gagal mendapatkan id_menu otomatis dari tbmenu.");
+        try {
+            String sqlMenu = "INSERT INTO tbmenu (id_menu) VALUES (DEFAULT)";
+            pst = con.prepareStatement(sqlMenu, PreparedStatement.RETURN_GENERATED_KEYS);
+            pst.executeUpdate();
+
+            ResultSet generatedKeys = pst.getGeneratedKeys();
+            int idMenu = 0;
+            if (generatedKeys.next()) {
+                idMenu = generatedKeys.getInt(1);
+            } else {
+                throw new Exception("Gagal mendapatkan id_menu otomatis dari tbmenu.");
+            }
+
+            this.sql = "INSERT INTO tbmenuresto(id_menu, nama, harga, status, kategori) "
+                    + "VALUES(" + idMenu + ", '" + mnr.getNama() + "', " + mnr.getHarga()
+                    + ", '" + mnr.getStatus() + "', '" + mnr.getKategori() + "')";
+            pst = con.prepareStatement(sql);
+            pst.executeUpdate();
+
+            return true;
+        } catch (Exception e) {
+            System.out.println("Gagal menambahkan data: " + e.getMessage());
+            return false;
         }
-
-        this.sql = "INSERT INTO tbmenuresto(id_menu, nama, harga, status, kategori) "
-                 + "VALUES(" + idMenu + ", '" + mnr.getNama() + "', " + mnr.getHarga() 
-                 + ", '" + mnr.getStatus() + "', '" + mnr.getKategori() + "')";
-        pst = con.prepareStatement(sql);
-        pst.executeUpdate();
-
-        return true;
-    } catch (Exception e) {
-        System.out.println("Gagal menambahkan data: " + e.getMessage());
-        return false;
     }
-}
 
-
-
-//    public boolean ubahData(int a, String b, int c, String d, String e){
-//        MenuResto mr = new MenuResto();
-//        mr.setId_menuresto(a);
-//        mr.setNama(b);
-//        mr.setHarga(c);
-//        mr.setStatus(d);
-//        mr.setKategori(e);
-//        
-//        try {
-//            this.sql = "UPDATE tbmenuresto SET"
-//                    + "nama='"+mr.getNama()+"', "
-//                    + "harga='"+mr.getHarga()+"', "
-//                    + "status='"+mr.getStatus()+"', "
-//                    + "kategori="+ mr.getKategori() +""
-//                    + "WHERE id=" + mr.getId_menuresto() + "";
-//            this.pst.executeUpdate(sql);
-//            return true;
-//        } catch (Exception ex) {
-//            return false;
-//        }
-//    }
     public boolean ubahData(int a, String b, int c, String d, String e) {
         MenuResto mr = new MenuResto();
         mr.setId_menuresto(a);
@@ -148,18 +125,18 @@ public boolean tambahData(String a, int b, String c, String d) {
             return false;
         }
     }
-    
-    public boolean hapusData(int a){
+
+    public boolean hapusData(int a) {
         Menu mn = new Menu();
         mn.setId(a);
-        
+
         try {
             this.sql = "DELETE FROM tbmenu WHERE "
-                    + "id_menu="+mn.getId()+"";
+                    + "id_menu=" + mn.getId() + "";
             pst = con.prepareStatement(sql);
             pst.executeUpdate();
             return true;
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Gagal mengubah data: " + e.getMessage());
             return false;
         }

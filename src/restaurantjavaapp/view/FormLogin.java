@@ -113,6 +113,10 @@ public class FormLogin extends javax.swing.JFrame {
    
         
         if (status == true){
+            User idus = cu.getIdUserSekarang();
+            User nmus = cu.getNamaUserSekarang();
+            int iduser = idus.getId_user();
+            String namauser = nmus.getNama_user();
             User level = cu.getIdLevelSekarang();
             int idlevel = level.getId_level();
             if(idlevel == 0){
@@ -120,20 +124,21 @@ public class FormLogin extends javax.swing.JFrame {
             }else{
                 switch(idlevel){
                     case 1:
-                        MenuRegistrasi reg = new MenuRegistrasi();
-                        reg.setVisible(true);
+                        MenuTransaksi tran3 = new MenuTransaksi(iduser,namauser);
+                        tran3.setVisible(true);
                         this.setVisible(false);
+                        tran3.btnMenuRegistrasi.setEnabled(true);
                         break;
                     case 2:
-                        MenuTransaksi tran = new MenuTransaksi();
+                        MenuTransaksi tran = new MenuTransaksi(iduser,namauser);
                         tran.setVisible(true);
                         this.setVisible(false);
                         break;
                     case 3:
-                        MenuTransaksi tran2 = new MenuTransaksi();
+                        MenuTransaksi tran2 = new MenuTransaksi(iduser,namauser);
                         tran2.setVisible(true);
                         this.setVisible(false);
-                        tran2.btnCetakLaporan.setEnabled(true);
+                        tran2.btnMenuRegistrasi.setEnabled(true);
                         break;
                     case 4:
                         MenuRestoran masak = new MenuRestoran();

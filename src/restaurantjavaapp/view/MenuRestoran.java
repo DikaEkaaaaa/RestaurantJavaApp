@@ -345,13 +345,13 @@ public class MenuRestoran extends javax.swing.JFrame {
 
     private void tblRestoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRestoMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel dtm2 = (DefaultTableModel) tblResto.getModel();
+        DefaultTableModel dtm3 = (DefaultTableModel) tblResto.getModel();
         
         int select = tblResto.getSelectedRow();
         
-        this.txtIdMenu.setText(dtm2.getValueAt(select, 0).toString());
-        this.txtNamaMenu.setText(dtm2.getValueAt(select, 1).toString());
-        this.txtHargaMenu.setText(dtm2.getValueAt(select, 2).toString());
+        this.txtIdMenu.setText(dtm3.getValueAt(select, 0).toString());
+        this.txtNamaMenu.setText(dtm3.getValueAt(select, 1).toString());
+        this.txtHargaMenu.setText(dtm3.getValueAt(select, 2).toString());
     }//GEN-LAST:event_tblRestoMouseClicked
 
     private void btnTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTransaksiMouseClicked
@@ -362,8 +362,8 @@ public class MenuRestoran extends javax.swing.JFrame {
     private void btnTransaksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiActionPerformed
         // TODO add your handling code here:
         MenuTransaksi mt = new MenuTransaksi();
-        this.setVisible(false);
         mt.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnTransaksiActionPerformed
 
     private void cmbStatusMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbStatusMenuActionPerformed

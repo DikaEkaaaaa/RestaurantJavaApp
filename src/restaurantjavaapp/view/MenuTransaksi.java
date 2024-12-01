@@ -4,14 +4,61 @@
  */
 package restaurantjavaapp.view;
 
+import com.toedter.calendar.JDateChooser;
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
-import restaurantjavaapp.controller.ControllerMenuTransaksi;
+import restaurantjavaapp.controller.ControllerTransaksi;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ASUS
  */
 public class MenuTransaksi extends javax.swing.JFrame {
+    ControllerTransaksi controller;
+    private Connection con;
+    private PreparedStatement pst;
+    private ResultSet rs;
+    public String sql;
+    
+    private int idUser;
+    private String namaUser;
+    
+
+    public JComboBox<String> getCmbIdMenu() {
+        return cmbIdMenu;
+    }
+
+    public JTable getTblTransaksi() {
+        return tblTransaksi;
+    }
+
+    public JTextField getTxtIdTransaksi() {
+        return txtIdTransaksi;
+    }
+
+    public JTextField getTxtJmlBeli() {
+        return txtJmlBeli;
+    }
+
+    public JTextField getTxtNamaPelanggan() {
+        return txtNamaPelanggan;
+    }
+
+    public JDateChooser getTxtTanggal() {
+        return txtTanggal;
+    }
+
+    public JTextField getTxtTotalBayar() {
+        return txtTotalBayar;
+    }
 
     /**
      * Creates new form MenuMasakan
@@ -20,14 +67,29 @@ public class MenuTransaksi extends javax.swing.JFrame {
         initComponents();
         this.refreshTable();
     }
+    
+    public MenuTransaksi(int a, String b) {
+        initComponents();
+        this.idUser = a;
+        this.namaUser = b;
+        refreshTable();
+    }
+    
+    public int getIdUser() {
+        return idUser;
+    }
 
-     public void refreshTable(){
-        ControllerMenuTransaksi cmt = new ControllerMenuTransaksi();
-        DefaultTableModel dtm = cmt.buatTable();
+    public String getNamaUser() {
+        return namaUser;
+    }
+
+    public void refreshTable(){
+        ControllerTransaksi ct = new ControllerTransaksi();
+        DefaultTableModel dtm = ct.buatTabel();
         
         this.tblTransaksi.setModel(dtm);
         
-        cmt.tampilkanData();
+        ct.tampilkanData(this);
     }
      
 
@@ -44,14 +106,14 @@ public class MenuTransaksi extends javax.swing.JFrame {
         txtIdTransaksi = new javax.swing.JTextField();
         txtNamaPelanggan = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cmbIdMasakan = new javax.swing.JComboBox<>();
+        cmbIdMenu = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblTransaksi = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        btnCetakLaporan = new javax.swing.JButton();
         btnInput = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        btnCetakLaporan1 = new javax.swing.JButton();
         btnLogout = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -62,6 +124,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         btnMenuMasakan = new javax.swing.JButton();
         txtTanggal = new com.toedter.calendar.JDateChooser();
+        btnMenuRegistrasi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,9 +134,9 @@ public class MenuTransaksi extends javax.swing.JFrame {
 
         jLabel5.setText("ID MASAKAN");
 
-        cmbIdMasakan.addActionListener(new java.awt.event.ActionListener() {
+        cmbIdMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbIdMasakanActionPerformed(evt);
+                cmbIdMenuActionPerformed(evt);
             }
         });
 
@@ -97,14 +160,6 @@ public class MenuTransaksi extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnCetakLaporan.setText("CETAK LAPORAN");
-        btnCetakLaporan.setEnabled(false);
-        btnCetakLaporan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCetakLaporanActionPerformed(evt);
-            }
-        });
-
         btnInput.setText("INPUT");
         btnInput.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +181,14 @@ public class MenuTransaksi extends javax.swing.JFrame {
             }
         });
 
+        btnCetakLaporan1.setText("CETAK LAPORAN");
+        btnCetakLaporan1.setEnabled(false);
+        btnCetakLaporan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCetakLaporan1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,8 +201,8 @@ public class MenuTransaksi extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCetakLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCetakLaporan1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +212,7 @@ public class MenuTransaksi extends javax.swing.JFrame {
                     .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCetakLaporan, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCetakLaporan1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15))
         );
 
@@ -185,54 +248,69 @@ public class MenuTransaksi extends javax.swing.JFrame {
             }
         });
 
+        btnMenuRegistrasi.setText("MENU REGISTRASI");
+        btnMenuRegistrasi.setEnabled(false);
+        btnMenuRegistrasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuRegistrasiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(70, 70, 70)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
-                                .addComponent(btnLogout))
-                            .addComponent(txtIdTransaksi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 321, Short.MAX_VALUE)
-                            .addComponent(txtNamaPelanggan, javax.swing.GroupLayout.Alignment.TRAILING)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5))))
-                        .addGap(91, 91, 91)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(70, 70, 70)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnLogout))
+                                    .addComponent(txtIdTransaksi, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtNamaPelanggan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbIdMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnMenuMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtTotalBayar)
-                            .addComponent(txtJmlBeli)
-                            .addComponent(txtTanggal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(2, 2, 2)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5))))
+                                .addGap(91, 91, 91)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cmbIdMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnMenuMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtTotalBayar)
+                                    .addComponent(txtJmlBeli)
+                                    .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(393, 393, 393))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnMenuRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(564, 564, 564))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLogout))
@@ -246,45 +324,50 @@ public class MenuTransaksi extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbIdMasakan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbIdMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMenuMasakan)
                     .addComponent(jLabel5))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(34, 34, 34))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtJmlBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtTotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)))
+                    .addComponent(jLabel6)
+                    .addComponent(txtTanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtJmlBeli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTotalBayar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btnMenuRegistrasi, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCetakLaporanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakLaporanActionPerformed
+    private void btnMenuRegistrasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuRegistrasiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCetakLaporanActionPerformed
+        MenuRegistrasi mr = new MenuRegistrasi();
+        mr.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnMenuRegistrasiActionPerformed
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         // TODO add your handling code here:
+        controller = new ControllerTransaksi();
+        controller.prosesTransaksi(this);
     }//GEN-LAST:event_btnInputActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
+        controller = new ControllerTransaksi();
+        controller.prosesUbahTransaksi(this);
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -306,16 +389,53 @@ public class MenuTransaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnMenuMasakanActionPerformed
 
-    private void cmbIdMasakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdMasakanActionPerformed
+    private void cmbIdMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdMenuActionPerformed
         // TODO add your handling code here:
-        ControllerMenuTransaksi cmt = new ControllerMenuTransaksi();
-        cmt.refreshCombo();
-    }//GEN-LAST:event_cmbIdMasakanActionPerformed
+    }//GEN-LAST:event_cmbIdMenuActionPerformed
 
     private void tblTransaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTransaksiMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel dtm2 = (DefaultTableModel) tblTransaksi.getModel();
+        DefaultTableModel dtm4 = (DefaultTableModel) tblTransaksi.getModel();
+        
+        // Mengambil 1 baris data yang diklik
+        int pilih = tblTransaksi.getSelectedRow();
+
+        if (pilih != -1) { // memastikan bariss
+        // Set ID Transaksi
+        this.txtIdTransaksi.setText(dtm4.getValueAt(pilih, 0).toString());
+    
+        // Set Nama Pelanggan
+        this.txtNamaPelanggan.setText(dtm4.getValueAt(pilih, 3).toString());
+    
+        // sset ID Menu
+        String menuItem = dtm4.getValueAt(pilih, 4).toString();
+        for (int i = 0; i < cmbIdMenu.getItemCount(); i++) {
+        if (cmbIdMenu.getItemAt(i).contains(menuItem)) {
+            cmbIdMenu.setSelectedItem(cmbIdMenu.getItemAt(i));
+            break;
+            }
+        }
+    
+        // Set Tanggal
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date date = sdf.parse(dtm4.getValueAt(pilih, 5).toString());
+            this.txtTanggal.setDate(date);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Gagal memuat tanggal: " + e.getMessage());
+        }
+    
+        // Set Jumlah Beli
+        this.txtJmlBeli.setText(dtm4.getValueAt(pilih, 9).toString());
+
+        // Set Total Bayar
+        this.txtTotalBayar.setText(dtm4.getValueAt(pilih, 10).toString());
+        }
     }//GEN-LAST:event_tblTransaksiMouseClicked
+
+    private void btnCetakLaporan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCetakLaporan1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCetakLaporan1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -356,13 +476,14 @@ public class MenuTransaksi extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnCetakLaporan;
+    public javax.swing.JButton btnCetakLaporan1;
     public javax.swing.JButton btnDelete;
     public javax.swing.JButton btnInput;
     public javax.swing.JButton btnLogout;
     private javax.swing.JButton btnMenuMasakan;
+    public javax.swing.JButton btnMenuRegistrasi;
     public javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cmbIdMasakan;
+    private javax.swing.JComboBox<String> cmbIdMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
